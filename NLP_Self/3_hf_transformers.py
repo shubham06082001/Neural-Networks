@@ -46,13 +46,13 @@ for word in words:
     print(f"Original: {word}, Stemmed: {stemmed}")
 
 # Lemmatization
-# import stanza
+import stanza
 
-# stanza.download('en')
-# nlp = stanza.Pipeline('en', processors='tokenize,mwt,pos,lemma')
-# doc = nlp("running studies hugging huggingface")
-# lemmas = [word.lemma for sent in doc.sentences for word in sent.words]
-# print(lemmas)
+stanza.download('en')
+nlp = stanza.Pipeline('en', processors='tokenize,mwt,pos,lemma')
+doc = nlp("running studies hugging huggingface")
+lemmas = [word.lemma for sent in doc.sentences for word in sent.words]
+print("Lemmas: ", lemmas)
 
 # Classical NLP Pipeline
 # Text -> Cleaning -> Tokenization -> Stopword Removal -> Stemming / Lemmatization -> Feature Extraction (TF-IDF, Word2Vec, GloVe) -> Model Training (SVM, Random Forest, etc.) -> Evaluation
@@ -76,15 +76,15 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(sentences)
 print("TF-IDF Feature Names: ", vectorizer.get_feature_names_out())
-print("TF-IDF Transformed Data: ", X.toarray())
+print("TF-IDF Transformed Data: \n", X.toarray())
 
 # Word Embeddings
 from transformers import pipeline
 
-# classifier = pipeline("sentiment-analysis")
+classifier = pipeline("sentiment-analysis")
 
-# result = classifier("I love learning NLP")
-# print("Sentiment Analysis Result: ", result)
+result = classifier("I love learning NLP")
+print("Sentiment Analysis Result: ", result)
 
 # Tokenizer
 from transformers import AutoTokenizer
@@ -106,3 +106,4 @@ model = AutoModel.from_pretrained("distilbert-base-uncased")
 inputs = tokenizer("I love natural language processing NLP!", return_tensors="pt")
 outputs = model(**inputs)
 print(outputs.last_hidden_state.shape)
+print("Outputs: ", outputs)
