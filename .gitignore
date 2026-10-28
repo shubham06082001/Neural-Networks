@@ -21,3 +21,7 @@ NLP_Assignment/Reviews.csv
 *.joblib
 *.safetensors
 *.ckpt
+
+NLP_Assignment/distilbert_sentiment/*
+
+NLP_Assignment/final_distilbert_sentiment/*
